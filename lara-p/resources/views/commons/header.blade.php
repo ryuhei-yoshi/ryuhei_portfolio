@@ -1,0 +1,17 @@
+<nav class="navbar navbar-expand navbar-light">
+    <a class="navbar-brand" href="/"><h1>Hogo</h1>
+    </a>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-md-auto align-items-center header_menu">
+            <li>
+                <a class="" href="{{ route('cat.create') }}">猫登録</a>
+            </li>
+            <li>
+                <a class="" href="{{ route('user.login.show') }}">ログイン</a>
+            </li>
+            <li>
+                <a class="" href="{{ route('user.create') }}">新規登録</a>
+            </li>
+        </ul>
+    </div>
+</nav>
