@@ -13,6 +13,7 @@
 
 // 一覧ページ
 Route::get('/', 'CatsController@index');
+Route::get('/users/{id}', 'UsersController@show')->name('user.show');
 
 // ユーザー登録
 Route::get('/user/create', 'Auth\RegisterController@showRegistrationForm')->name('user.create');
@@ -21,6 +22,7 @@ Route::post('/user/create', 'Auth\RegisterController@register')->name('user.stor
 // ユーザーログイン登録
 Route::get('/user/login', 'Auth\LoginController@showLoginForm')->name('user.login.show');
 Route::post('/user/login', 'Auth\LoginController@login')->name('user.login');
+Route::get('/user/logout', 'Auth\LoginController@logout')->name('user.logout');
 
 // 猫の詳細ページ
 Route::get('cat/show/{id}', 'CatsController@show')->name('cat.show');

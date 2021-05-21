@@ -14,7 +14,9 @@
                         <div class="main_item_text mt-1">
                             <div class="item_date d-flex justify-content-between">
                                 <div class="category ml-2"><p>カテゴリー</p></div>
+                                @if (Auth::check())
                                 <p class="like">お気に入り</p>
+                                @endif
                             </div>
                             <div class="item_text mt-2">
                                 <h2 class="item_text_title" style="font-size: 24px;">{{ $cat->title }}</h2>
