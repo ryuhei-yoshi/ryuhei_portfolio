@@ -12,6 +12,11 @@ class CatsController extends Controller
         $cats = Cat::orderBy('created_at', 'desc')->paginate(5);
         return view('welcome', ['cats' => $cats]);
     }
+    public function adminIndex()
+    {
+        $cats = Cat::orderBy('created_at', 'desc')->paginate(5);
+        return view('admin_home', ['cats' => $cats]);
+    }
 
     public function show($id)
     {

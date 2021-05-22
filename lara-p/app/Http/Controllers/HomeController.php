@@ -1,14 +1,22 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
-use App\Admin;
 
 class HomeController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Show the application dashboard.
      *
@@ -16,11 +24,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('admin_home');
-    }
-    public function show($id)
-    {
-        $admin = Admin::findOrFail($id);
-        return view('admin.show', ['admin' => $admin]);
+        return view('auth.home');
     }
 }
