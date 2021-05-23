@@ -1,6 +1,8 @@
-@extends('layouts.app')
+@extends('layouts.admin_app')
 
-@section('content')
+
+@section('admin_content')
+@include('commons.error_card_list')
     {!! Form::open(['route' => 'cat.store', 'enctype'=>'multipart/form-data']) !!}
     <div class="form-group">
         {!! Form::label('title', 'タイトル') !!}

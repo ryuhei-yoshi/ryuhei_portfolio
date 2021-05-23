@@ -8,7 +8,7 @@
                     <h2 class="logo-img mx-auto">
                         ログイン
                     </h2>
-                    {{-- @include('commons.error_card_list') --}}
+                    @include('commons.error_card_list')
                 </div>
                 {!! Form::open(['route'=>'user.login']) !!}
                     {{ csrf_field() }}

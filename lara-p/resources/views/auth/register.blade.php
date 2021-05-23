@@ -9,7 +9,7 @@
                     <h2 class="logo-img mx-auto">
                         新規登録
                     </h2>
-                    {{-- @include('commons.error_card_list') --}}
+                    @include('commons.error_card_list')
                 </div>
                 {!! Form::open(['user.store']) !!}
                     @csrf

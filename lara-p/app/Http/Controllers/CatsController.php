@@ -31,6 +31,11 @@ class CatsController extends Controller
 
     public function store(Request $request)
     {
+        $validatedData = $request->validate([
+            'title' => 'required|unique:cats|max:25',
+            'area' => 'required|max:25',
+            'adress' => 'required|max:25',
+        ]);
         $catsImage = $request->image_url;
         $catsImagePath = $catsImage->store('public/uploads');
         $data = [
@@ -42,6 +47,6 @@ class CatsController extends Controller
             'image_url' => $catsImagePath,
         ];
         Cat::create($data);
-        return redirect('/');
+        return redirect('/admin/home');
     }
 }

@@ -16,22 +16,22 @@ Auth::routes();
 // 一覧ページ
 Route::get('/', 'CatsController@index');
 
-// ユーザー登録
-Route::get('/user/create', 'Auth\RegisterController@showRegistrationForm')->name('user.create');
-Route::post('/user/create', 'Auth\RegisterController@register')->name('user.store');
-
-// ユーザーログイン登録
-Route::get('/user/login', 'Auth\LoginController@showLoginForm')->name('user.login.show');
-Route::post('/user/login', 'Auth\LoginController@login')->name('user.login');
-Route::get('/user/logout', 'Auth\LoginController@logout')->name('user.logout');
+Route::group(['prefix' => 'user'], function(){
+    // ユーザー登録
+    Route::get('create', 'Auth\RegisterController@showRegistrationForm')->name('user.create');
+    Route::post('create', 'Auth\RegisterController@register')->name('user.store');
+    
+    // ユーザーログイン登録
+    Route::get('login', 'Auth\LoginController@showLoginForm')->name('user.login.show');
+    Route::post('login', 'Auth\LoginController@login')->name('user.login');
+    Route::get('logout', 'Auth\LoginController@logout')->name('user.logout');
+});
 
 // ユーザー詳細
 Route::get('/users/{id}', 'UsersController@show')->name('user.show');
 
 // 猫の詳細ページ
 Route::get('cat/show/{id}', 'CatsController@show')->name('cat.show');
-
-
 
 // adminルート
 Route::group(['prefix' => 'admin'], function(){
