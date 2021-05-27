@@ -1,6 +1,6 @@
-@extends('layouts.app')
+@extends('layouts.admin_app')
 
-@section('content')
+@section('admin_content')
     @foreach ($cats as $cat)
         <div class="card p-2 mt-3">
             <div class="main_contents">
@@ -19,21 +19,8 @@
                                             <p>カテゴリー</p>
                                         </div>
                                         <div class="text-right mb-2">いいね！
-                                            <span class="badge badge-pill badge-success">{{ $cat->favorite_users()->count() }}</span>
+                                            <span class="badge badge-pill badge-success">{{ $cat->favorite_admins()->count() }}</span>
                                         </div>
-                                        @if (Auth::check())
-                                        @if (Auth::id() != $cat->user_id)
-                                            @if (Auth::user()->is_favorite($cat->id))
-                                                {!! Form::open(['route' => ['favorites.unfavorite', $cat->id], 'method' => 'delete']) !!}
-                                                {!! Form::submit('いいね！を外す', ['class' => 'button btn btn-warning']) !!}
-                                                {!! Form::close() !!}
-                                            @else
-                                                {!! Form::open(['route' => ['favorites.favorite', $cat->id]]) !!}
-                                                {!! Form::submit('いいね！を付ける', ['class' => 'button btn btn-warning']) !!}
-                                                {!! Form::close() !!}
-                                            @endif
-                                        @endif
-                                        @endif
                                     </div>
                                     <div class="item_text mt-2">
                                         <h2 class="item_text_title" style="font-size: 24px;">{{ $cat->title }}</h2>
