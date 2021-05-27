@@ -36,6 +36,8 @@ class CatsController extends Controller
             'area' => 'required|max:25',
             'adress' => 'required|max:25',
         ]);
+        $cat = new Cat();
+        $cat->admin_id = \Auth::id();
         $catsImage = $request->image_url;
         $catsImagePath = $catsImage->store('public/uploads');
         $data = [
@@ -46,7 +48,7 @@ class CatsController extends Controller
             'old' => $request->old,
             'image_url' => $catsImagePath,
         ];
-        Cat::create($data);
+        $cat->fill($data)->save();
         return redirect('/admin/home');
     }
 }

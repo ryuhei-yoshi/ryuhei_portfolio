@@ -26,6 +26,11 @@ Route::group(['prefix' => 'user'], function(){
     Route::post('login', 'Auth\LoginController@login')->name('user.login');
     Route::get('logout', 'Auth\LoginController@logout')->name('user.logout');
 });
+// いいね機能実装
+Route::group(['prefix' => 'cats/{id}'], function(){
+    Route::post('favorite', 'FavoriteController@store')->name('favorites.favorite');
+    Route::delete('unfavorite', 'FavoriteController@destroy')->name('favorites.unfavorite');
+});
 
 // ユーザー詳細
 Route::get('/users/{id}', 'UsersController@show')->name('user.show');
@@ -42,11 +47,12 @@ Route::group(['prefix' => 'admin'], function(){
 });
 
 Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function(){
-    Route::get('home', 'CatsController@adminIndex')->name('admin_auth.home');
+    Route::get('home', 'Admin\HomeController@index')->name('admin_auth.home');
     Route::get('{id}', 'Admin\HomeController@show')->name('admin.show');
     Route::post('logout', 'Admin\Auth\LoginController@logout')->name('admin_auth.logout');
 
     // 猫の登録ページ
     Route::get('cat/create', 'CatsController@create')->name('cat.create');
     Route::post('cat', 'CatsController@store')->name('cat.store');
+
 });

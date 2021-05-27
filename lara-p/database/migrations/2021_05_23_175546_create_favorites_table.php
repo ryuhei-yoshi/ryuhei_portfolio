@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCatsTable extends Migration
+class CreateFavoritesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,19 +13,15 @@ class CreateCatsTable extends Migration
      */
     public function up()
     {
-        Schema::create('cats', function (Blueprint $table) {
+        Schema::create('favorites', function (Blueprint $table) {
             $table->bigIncrements('id');
-
-            $table->bigInteger('user_id')->unsigned();
+            $table->bigInteger('cat_id')->unsigned()->index();
+            $table->foreign('cat_id')->references('id')->on('cats')->onDelete('cascade');
+            $table->bigInteger('user_id')->unsigned()->index();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            
-            $table->string('title', 20);
-            $table->string('area');
-            $table->string('adress');
-            $table->string('category');
-            $table->string('image_url');
-            $table->integer('old');
             $table->timestamps();
+
+            $table->unique(['cat_id', 'user_id']);
         });
     }
 
@@ -36,6 +32,6 @@ class CreateCatsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cats');
+        Schema::dropIfExists('favorites');
     }
 }

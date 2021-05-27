@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Admin;
+use App\Cat;
 
 class HomeController extends Controller
 {
@@ -16,7 +17,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('admin_home');
+        $cats = Cat::orderBy('created_at', 'desc')->paginate(5);
+
+        return view('admin_home', ['cats' => $cats,]);
     }
     public function show($id)
     {
