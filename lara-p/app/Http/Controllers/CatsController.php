@@ -9,12 +9,12 @@ class CatsController extends Controller
 {
     public function index()
     {
-        $cats = Cat::orderBy('created_at', 'desc')->paginate(5);
+        $cats = Cat::orderBy('created_at', 'desc')->paginate(9);
         return view('welcome', ['cats' => $cats]);
     }
     public function adminIndex()
     {
-        $cats = Cat::orderBy('created_at', 'desc')->paginate(5);
+        $cats = Cat::orderBy('created_at', 'desc')->paginate(9);
         return view('admin_home', ['cats' => $cats]);
     }
 
@@ -37,7 +37,6 @@ class CatsController extends Controller
             'adress' => 'required|max:25',
         ]);
         $cat = new Cat();
-        $cat->admin_id = \Auth::id();
         $catsImage = $request->image_url;
         $catsImagePath = $catsImage->store('public/uploads');
         $data = [

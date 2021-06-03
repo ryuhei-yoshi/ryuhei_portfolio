@@ -19,7 +19,6 @@ class CatsTableSeeder extends Seeder
                 'category' => Str::random(10),
                 'image_url' => Str::random(10),
                 'old' => 5,
-                'user_id' => 2,
             ],
             [
                 'title' => Str::random(10),
@@ -28,7 +27,6 @@ class CatsTableSeeder extends Seeder
                 'category' => Str::random(10),
                 'image_url' => Str::random(10),
                 'old' => 5,
-                'user_id' => 2,
             ],
             [
                 'title' => Str::random(10),
@@ -37,7 +35,6 @@ class CatsTableSeeder extends Seeder
                 'category' => Str::random(10),
                 'image_url' => Str::random(10),
                 'old' => 5,
-                'user_id' => 3,
             ],
             [
                 'title' => Str::random(10),
@@ -46,7 +43,6 @@ class CatsTableSeeder extends Seeder
                 'category' => Str::random(10),
                 'image_url' => Str::random(10),
                 'old' => 5,
-                'user_id' => 1,
             ],
         ]);
     }

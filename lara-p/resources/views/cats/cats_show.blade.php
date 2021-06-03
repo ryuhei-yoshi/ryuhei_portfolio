@@ -1,7 +1,7 @@
 @if (Auth::guard('admin')->check())
     @extends('layouts.admin_app')
     @section('admin_content')
-@else
+@elseif (Auth::check())
     @extends('layouts.app')
     @section('content')
 @endif

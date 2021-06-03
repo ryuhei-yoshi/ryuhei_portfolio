@@ -16,7 +16,7 @@
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <!-- Styles -->
-    <link href="{{ asset('/css/application.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('/css/application.css?2021') }}">
     <!-- Fontawsome -->
     <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
 </head>
@@ -39,6 +39,14 @@
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <!-- MDB core JavaScript -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.11/js/mdb.min.js">
+    </script>
+    <script src="{{ url('assets/js/select2/select2.min.js') }}"></script>
+    <script src="{{ url('assets/js/select2/ja.js') }}"></script>
+     
+    <script type="text/javascript">
+          $(document).ready(function() {
+              $(".js-multiple").select2({ width: 'resolve' });
+          });
     </script>
 </body>
 
