@@ -7,10 +7,19 @@ use App\Cat;
 
 class CatsController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $cats = Cat::orderBy('created_at', 'desc')->paginate(9);
-        return view('welcome', ['cats' => $cats]);
+        $keyword = $request->input('keyword');
+
+        $query = Cat::query();
+
+        if(!empty($keyword)){
+            $query->where('title', 'LIKE', "%{$keyword}%")
+                        ->orWhere('old', 'LIKE', "%{$keyword}%");
+        }
+
+        $cats = $query->orderBy('created_at', 'desc')->paginate(6);
+        return view('welcome', ['cats' => $cats, 'keyword' => $keyword]);
     }
     public function adminIndex()
     {
@@ -33,8 +42,11 @@ class CatsController extends Controller
     {
         $validatedData = $request->validate([
             'title' => 'required|unique:cats|max:25',
-            'area' => 'required|max:25',
-            'adress' => 'required|max:25',
+            'area' => 'required',
+            'adress' => 'required',
+            'category' => 'required|max:25',
+            'old' => 'required|max:25',
+            'image_url' => 'required',
         ]);
         $cat = new Cat();
         $catsImage = $request->image_url;

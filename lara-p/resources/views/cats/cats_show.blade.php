@@ -4,6 +4,8 @@
 @elseif (Auth::check())
     @extends('layouts.app')
     @section('content')
+@else
+    @section('content')
 @endif
     <div class="container">
         <div class="main_content">

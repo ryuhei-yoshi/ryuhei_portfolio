@@ -40,14 +40,6 @@
     <!-- MDB core JavaScript -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.11/js/mdb.min.js">
     </script>
-    <script src="{{ url('assets/js/select2/select2.min.js') }}"></script>
-    <script src="{{ url('assets/js/select2/ja.js') }}"></script>
-     
-    <script type="text/javascript">
-          $(document).ready(function() {
-              $(".js-multiple").select2({ width: 'resolve' });
-          });
-    </script>
 </body>
 
 </html>

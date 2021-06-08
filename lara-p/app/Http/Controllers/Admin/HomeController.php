@@ -17,7 +17,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $cats = Cat::orderBy('created_at', 'desc')->paginate(5);
+        $myCats = Auth::id();
+        $cats = Cat::where('id', $myCats)->paginate(5);
 
         return view('admin_home', ['cats' => $cats,]);
     }

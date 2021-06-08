@@ -24,7 +24,7 @@
         </select>
     </div>
     <div class="form-group">
-        {!! Form::label('category', 'カテゴリー') !!}
+        {!! Form::label('category', '特徴') !!}
         {!! Form::text('category', old('category'), ['class' => 'form-control']) !!}
     </div>
     <div class="form-group">
