@@ -21,6 +21,9 @@ class CreateCatsTable extends Migration
             $table->string('category');
             $table->string('image_url');
             $table->integer('old');
+            $table->bigInteger('admin_id')->unsigned();
+            $table->foreign('admin_id')->references('id')->on('cats')->onDelete('cascade');
+
             $table->timestamps();
         });
     }

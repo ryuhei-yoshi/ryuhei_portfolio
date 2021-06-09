@@ -14,7 +14,7 @@ class Cat extends Model
      * @var array
      */
     protected $fillable = [
-        'title', 'area', 'adress', 'category', 'old', 'image_url'
+        'title', 'area', 'adress', 'category', 'old', 'image_url', 'admin_id'
     ];
 
     public function admin()

@@ -31,6 +31,7 @@
         {!! Form::label('old', '年齢') !!}
         {!! Form::text('old', old('old'), ['class' => 'form-control']) !!}
     </div>
+    <input type="hidden" name="admin_id" value="{{ Auth::user()->id }}">
     <div class="form-group">
         <input type="file" name="image_url">
     </div>

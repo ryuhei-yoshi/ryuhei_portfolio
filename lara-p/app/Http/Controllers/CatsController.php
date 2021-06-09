@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Cat;
+use Illuminate\Support\Facades\Auth;
 
 class CatsController extends Controller
 {
@@ -57,6 +58,7 @@ class CatsController extends Controller
             'adress' => $request->adress,
             'category' => $request->category,
             'old' => $request->old,
+            'admin_id' => $request->admin_id,
             'image_url' => $catsImagePath,
         ];
         $cat->fill($data)->save();
