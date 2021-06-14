@@ -13,6 +13,7 @@ class CatsController extends Controller
         $keyword = $request->input('keyword');
 
         $query = Cat::query();
+        $catsAll = $query->count();
 
         if(!empty($keyword)){
             $query->where('title', 'LIKE', "%{$keyword}%")
@@ -20,7 +21,7 @@ class CatsController extends Controller
         }
 
         $cats = $query->orderBy('created_at', 'desc')->paginate(6);
-        return view('welcome', ['cats' => $cats, 'keyword' => $keyword]);
+        return view('welcome', ['cats' => $cats, 'keyword' => $keyword, 'catsAll' => $catsAll,]);
     }
     public function adminIndex()
     {
@@ -42,12 +43,12 @@ class CatsController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'title' => 'required|unique:cats|max:25',
+            'title' => 'required|max:25',
             'area' => 'required',
             'adress' => 'required',
             'category' => 'required|max:25',
             'old' => 'required|max:25',
-            'image_url' => 'required',
+            'image_url' => 'required|image',
         ]);
         $cat = new Cat();
         $catsImage = $request->image_url;
@@ -61,6 +62,31 @@ class CatsController extends Controller
             'admin_id' => $request->admin_id,
             'image_url' => $catsImagePath,
         ];
+        $cat->fill($data)->save();
+        return redirect('/admin/home');
+    }
+
+    public function edit($id)
+    {
+        $cat = Cat::findOrFail($id);
+
+        return view('cats.edit', ['cat' => $cat]);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $catsImage = $request->image_url;
+        $catsImagePath = $catsImage->store('public/uploads');
+        $data = [
+            'title' => $request->title,
+            'area' => $request->area,
+            'adress' => $request->adress,
+            'category' => $request->category,
+            'old' => $request->old,
+            'admin_id' => $request->admin_id,
+            'image_url' => $catsImagePath,
+        ];
+        $cat = Cat::findOrFail($id);
         $cat->fill($data)->save();
         return redirect('/admin/home');
     }

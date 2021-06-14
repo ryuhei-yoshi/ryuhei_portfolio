@@ -54,5 +54,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function(){
     // 猫の登録ページ
     Route::get('cat/create', 'CatsController@create')->name('cat.create');
     Route::post('cat', 'CatsController@store')->name('cat.store');
-
+    Route::get('cat/edit/{id}', 'CatsController@edit')->name('cat.edit');
+    Route::post('cat/edit/{id}', 'CatsController@update')->name('cat.update');
 });

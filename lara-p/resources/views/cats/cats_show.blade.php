@@ -2,7 +2,6 @@
     @extends('layouts.admin_app')
     @section('admin_content')
 @elseif (Auth::check())
-    @extends('layouts.app')
     @section('content')
 @else
     @section('content')
@@ -18,8 +17,8 @@
                     <div class="item_date d-flex justify-content-between">
                         <div class="category ml-2">
                             <p>カテゴリー</p>
+                            <p>{{ $cat->category }}</p>
                         </div>
-                        <p class="like">お気に入り</p>
                     </div>
                     <div class="item_text mt-2">
                         <h2 class="item_text_title" style="font-size: 24px;">{{ $cat->title }}</h2>

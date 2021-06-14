@@ -17,9 +17,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $cats = Cat::where('admin_id', Auth::user()->id)->paginate(3);
-
-        return view('admin_home', ['cats' => $cats,]);
+        $catsCount = Cat::where('admin_id', Auth::user()->id)->count();
+        $cats = Cat::where('admin_id', Auth::user()->id)->paginate(9);
+        return view('admin_home', ['cats' => $cats, 'catsCount' => $catsCount,]);
     }
     public function show($id)
     {
